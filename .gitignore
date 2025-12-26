@@ -1,0 +1,18 @@
+# ====================
+# Python backend
+# ====================
+backend/__pycache__/       # Python cache files
+backend/*.pyc             # Compiled Python files
+backend/.env              # Environment variables (API keys, secrets)
+backend/venv/             # Virtual environment folder, if you use one
+
+# ====================
+# Frontend (HTML/CSS/JS)
+# ====================
+# Only ignore .env if you have one for frontend
+frontend/.env
+
+# ====================
+# System files
+# ====================
+Thumbs.db                 # Windows system file
