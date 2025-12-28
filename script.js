@@ -40,7 +40,7 @@ const generateBotResponse = async (incomingMessageDiv) => {
     });
 
     try {
-        const response = await fetch("http://127.0.0.1:5000/chat", {
+        const response = await fetch("https://my-ai-chatbot-4i16.onrender.com", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
@@ -68,46 +68,11 @@ const generateBotResponse = async (incomingMessageDiv) => {
             messageElement.style.color = "#ff0000";
 
         } finally {
-            userData.file = {};
+            userData.file = { data: null, mime_type: null };
             incomingMessageDiv.classList.remove("thinking");
             chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
         }
     };
-
-    //API response
-    const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type" : "application/json" },
-        body: JSON.stringify({
-            contents: chatHistory
-        })
-    }
-    try {
-        //Fetch bot response from API
-        const response = await fetch(API_URL, requestOptions);
-        const data = await response.json();
-        if(!response.ok) throw new Error(data.error.message);
-
-        //Extract and display bot's response text
-        const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
-        messageElement.innerText = apiResponseText;
-
-        //Add bot reponse to chat history
-        chatHistory.push({
-            role: "model",
-            parts: [{ text: apiResponseText }]
-        });
-
-    } catch (error) {
-        //Handle Error in API response
-        console.log(error);
-        messageElement.innerText = error.message;
-        messageElement.style.color = "#ff0000";
-    }finally {
-        userData.file = {};
-        incomingMessageDiv.classList.remove("thinking");
-        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-    }
 
 //Handle outgoing user messages
 const handleOutgoingMessage = (e) => {
