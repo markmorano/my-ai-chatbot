@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://markmorano.github.io"])
 
 API_KEY = os.getenv("GEMINI_API_KEY")
 
