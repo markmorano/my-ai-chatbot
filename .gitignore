@@ -11,7 +11,7 @@ backend/venv/             # Virtual environment folder, if you use one
 # ====================
 # Only ignore .env if you have one for frontend
 frontend/.env
-
+.idea/
 # ====================
 # System files
 # ====================
